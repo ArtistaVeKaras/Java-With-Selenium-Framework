@@ -14,31 +14,6 @@ WebElement element = driver.findElement(By.id("username"));
 // XPath: //*[@id="username"]
 // CSS: #username
 
-// Find element by Class Name
-WebElement element = driver.findElement(By.className("login-button"));
-
-// Example XPath and CSS selector for Class Name
-// XPath: //*[contains(concat(' ', @class, ' '), ' login-button ')]
-// CSS: .login-button
-
-// Find element by XPath
-WebElement element = driver.findElement(By.xpath("//*[@id='username']"));
-
-// Example XPath and CSS selector for XPath
-// XPath: //input[@name='email']
-// CSS: input[name='email']
-
-// Find element by CSS Selector
-WebElement element = driver.findElement(By.cssSelector("#submit-button.primary"));
-
-// Example XPath and CSS selector for CSS Selector
-// XPath: //button[@type='submit' and contains(@class, 'primary')]
-// CSS: button[type='submit'].primary
-// Example XPath and CSS selector for ID
-// XPath: //*[@id="username"]
-// CSS: #username
-WebElement element = driver.findElement(By.id("username"));
-
 // Best practices:
 // - Ensure ID is unique on the page
 // - Prefer over other locators when available
@@ -51,6 +26,10 @@ WebElement element = driver.findElement(By.id("username"));
 ```java
 // Find single element by class name
 WebElement element = driver.findElement(By.className("submit-button"));
+
+// Example XPath and CSS selector for Class Name
+// XPath: //*[contains(concat(' ', @class, ' '), ' login-button ')]
+// CSS: .login-button
 
 // Find multiple elements
 List<WebElement> elements = driver.findElements(By.className("menu-item"));
@@ -83,6 +62,10 @@ WebElement firstInput = driver.findElement(By.tagName("input"));
 // Basic XPath
 WebElement element = driver.findElement(By.xpath("//input[@name='email']"));
 
+// Example XPath and CSS selector for XPath
+// XPath: //input[@name='email']
+// CSS: input[name='email']
+
 // XPath with contains
 WebElement partialLink = driver.findElement(
     By.xpath("//a[contains(text(),'Forgot Password')]"));
@@ -100,6 +83,10 @@ WebElement partialLink = driver.findElement(
 ```java
 // ID selector
 WebElement element = driver.findElement(By.cssSelector("#submit-button"));
+
+// Example XPath and CSS selector for CSS Selector
+// XPath: //button[@type='submit' and contains(@class, 'primary')]
+// CSS: button[type='submit'].primary
 
 // Class selector
 WebElement button = driver.findElement(By.cssSelector(".btn.primary"));
@@ -120,6 +107,10 @@ WebElement email = driver.findElement(By.cssSelector("input[type='email']"));
 ```java
 // Find element by name attribute
 WebElement searchBox = driver.findElement(By.name("q"));
+
+// Example XPath and CSS selector for CSS Selector
+// XPath: //input[@name='inp_val']
+// CSS: input[name='inp_val']
 
 // Best practices:
 // - Commonly used for form elements
