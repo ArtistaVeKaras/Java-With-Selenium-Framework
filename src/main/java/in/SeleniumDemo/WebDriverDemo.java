@@ -24,7 +24,9 @@ public class WebDriverDemo {
 //        essentials.linkText();
 //        essentials.testMultipleWindows();
 //          essentials.iframeTest();
-        essentials.showdowDOMTest();
+//        essentials.showdowDOMTest();
+//        essentials.implicitWait();
+        essentials.explicitWait();
 //          driver.quit();
 
 //      TODO: Learn how to implement the selenium Grid

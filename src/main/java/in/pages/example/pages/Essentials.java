@@ -6,8 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -151,4 +154,33 @@ public class Essentials extends BasePage {
         driver.get(showdownUrl);
     }
 
+    /**
+     * This method demonstrates how to use an implicit wait to wait for an element to appear on a webpage.
+     * It first sets the implicit wait timeout to 60 seconds and then navigates to a webpage that contains a login form.
+     * After navigating to the webpage, the implicit wait timeout will cause the driver to wait for up to 60 seconds
+     * for the email field to appear before throwing a NoSuchElementException.
+     *
+     * @see <a href="https://www.selenium.dev/documentation/en/webdriver/waits/#implicit-wait">Implicit Wait</a>
+     */
+    public void implicitWait(){
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+        driver.get("https://demo.evershop.io/account/login");
+    }
+
+    /**
+     * This method demonstrates how to use an explicit wait to wait for an element to become visible.
+     * It first navigates to a webpage that contains a login form, waits for the email field to become visible,
+     * and then enters a test email address into the field.
+     *
+     * @see <a href="https://www.selenium.dev/documentation/en/webdriver/page_loading_strategies/">Page Loading Strategies</a>
+     */
+    public void explicitWait() {
+        driver.get("https://demo.evershop.io/account/login");
+
+        // Create a WebDriverWait object with a timeout of 30 seconds
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email")));
+        element.sendKeys("test@example.com");
+    }
 }
