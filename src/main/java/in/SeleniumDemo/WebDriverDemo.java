@@ -22,9 +22,10 @@ public class WebDriverDemo {
 //        essentials.loopThroughWebElements(Essentials.url_login, essentials.inputElements);
 //        essentials.selectElementFromDropdown();
 //        essentials.linkText();
-        essentials.testMultipleWindows();
-
-//        driver.quit();
+//        essentials.testMultipleWindows();
+//          essentials.iframeTest();
+        essentials.showdowDOMTest();
+//          driver.quit();
 
 //      TODO: Learn how to implement the selenium Grid
 //      ChromeOptions options = new ChromeOptions();

@@ -6,7 +6,37 @@ This document provides examples and best practices for different locator strateg
 **Best Practice**: Most preferred locator when elements have unique and stable IDs.
 
 ```java
+
 // Find element by ID
+WebElement element = driver.findElement(By.id("username"));
+
+// Example XPath and CSS selector for ID
+// XPath: //*[@id="username"]
+// CSS: #username
+
+// Find element by Class Name
+WebElement element = driver.findElement(By.className("login-button"));
+
+// Example XPath and CSS selector for Class Name
+// XPath: //*[contains(concat(' ', @class, ' '), ' login-button ')]
+// CSS: .login-button
+
+// Find element by XPath
+WebElement element = driver.findElement(By.xpath("//*[@id='username']"));
+
+// Example XPath and CSS selector for XPath
+// XPath: //input[@name='email']
+// CSS: input[name='email']
+
+// Find element by CSS Selector
+WebElement element = driver.findElement(By.cssSelector("#submit-button.primary"));
+
+// Example XPath and CSS selector for CSS Selector
+// XPath: //button[@type='submit' and contains(@class, 'primary')]
+// CSS: button[type='submit'].primary
+// Example XPath and CSS selector for ID
+// XPath: //*[@id="username"]
+// CSS: #username
 WebElement element = driver.findElement(By.id("username"));
 
 // Best practices:

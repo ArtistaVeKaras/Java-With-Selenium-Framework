@@ -1,5 +1,6 @@
 package in.pages.example.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,8 @@ public class Essentials extends BasePage {
     public static final String url_store1 = "https://demo.nopcommerce.com/";
     public static final String url_login =   "https://demo.nopcommerce.com/login?returnUrl=%2F";
     private static final String url_store2 = "https://demo.evershop.io/men?od=asc";
+    private static final String iframeUrl = "https://selectorshub.com/iframe-scenario/";
+    private static final String showdownUrl = "http://127.0.0.1:5501/ShadomDOMExample.html";
 
     // Locators
     @FindBy(className = "button-1") private WebElement buttonSubmit;
@@ -24,6 +27,7 @@ public class Essentials extends BasePage {
     @FindBy(className = "form-field") private WebElement dropdown;
     @FindBy(linkText = "Strutter shoes") private WebElement linkText;
     @FindBy(className = "product-single-name") private WebElement productSingleName;
+    @FindBy(id = "inp_val") private WebElement iframeInput;
 
     public Essentials(WebDriver driver) {
         super(driver);
@@ -53,7 +57,7 @@ public class Essentials extends BasePage {
      * It retrieves the value of the name attribute for each element and prints it to the console.
      */
     public void loopThroughWebElements(String url, List<WebElement> elements) {
-        driver.get(url_login);
+        driver.get(url);
         Iterator<WebElement> i1 = elements.iterator();
         while (i1.hasNext()) {
             System.out.println(i1.next().getAttribute("name"));
@@ -119,4 +123,31 @@ public class Essentials extends BasePage {
         // Continue testing with first window...
 
     }
+    
+    /**
+     * This method demonstrates how to interact with elements within an iframe.
+     * It first navigates to a webpage that contains an iframe, switches to the iframe,
+     * finds an element by its ID, clears its existing text, and sends new text to it.
+     *
+     * @see <a href="https://selectorshub.com/iframe-scenario/">Iframe Scenario</a>
+     */
+    public void iframeTest() {
+        driver.get(iframeUrl);
+
+       // Switch to iframe by indexing
+//       WebElement iframeInput = driver.switchTo().frame(0).findElement(By.id("inp_val"));
+//       iframeInput.clear();
+//       iframeInput.sendKeys("Hello");
+
+       // Switch to iframe by WebElement
+       WebElement iframe = driver.findElement(By.cssSelector("#pact1"));
+       driver.switchTo().frame(iframe);
+       WebElement usernameField = driver.findElement(By.cssSelector("#inp_val"));
+        usernameField.sendKeys("Hello");
+    }
+
+    public void showdowDOMTest(){
+        driver.get(showdownUrl);
+    }
+
 }
