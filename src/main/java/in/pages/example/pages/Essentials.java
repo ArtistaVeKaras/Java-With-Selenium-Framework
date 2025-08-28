@@ -1,5 +1,6 @@
 package in.pages.example.pages;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.FluentWait;
 
+import java.io.File;
 import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
@@ -24,6 +26,7 @@ public class Essentials extends BasePage {
     private static final String iframeUrl = "https://selectorshub.com/iframe-scenario/";
     private static final String showdownUrl = "http://127.0.0.1:5501/ShadomDOMExample.html";
     public static final String loginUrlAccountLogin = "https://demo.evershop.io/account/login";
+    public static final String alertUrl = "https://www.selenium.dev/documentation/webdriver/interactions/alerts/";
 
     // Locators
     @FindBy(className = "button-1") private WebElement buttonSubmit;
@@ -33,6 +36,8 @@ public class Essentials extends BasePage {
     @FindBy(className = "product-single-name") private WebElement productSingleName;
     @FindBy(id = "inp_val") private WebElement iframeInput;
     @FindBy(css = "input[name='email") public WebElement fluentWaitElementEmailAddress;
+    @FindBy(css = "a[onclick='window.alert(\"Sample alert\")']") private WebElement alertButton;
+
 
     public Essentials(WebDriver driver) {
         super(driver);
@@ -220,7 +225,42 @@ public class Essentials extends BasePage {
         actions.moveToElement(fluentWaitElementEmailAddress).click().keyDown(Keys.SHIFT).sendKeys("Hello").keyUp(Keys.SHIFT).perform();
     }
 
+    /**
+     * This method demonstrates how to handle alerts using Selenium.
+     * It first navigates to a webpage that contains a button that triggers an alert,
+     * clicks on the button to trigger the alert, retrieves the text of the alert,
+     * and then accepts the alert.
+     *
+     * @see <a href="https://www.selenium.dev/documentation/en/webdriver/browser/alerts/">Alerts</a>
+     */
     public void alertsTest(){
-        driver.get(loginUrlAccountLogin);
+        driver.get(alertUrl);
+        alertButton.click();
+        String alertButton = driver.switchTo().alert().getText();
+        System.out.println(alertButton);
+        driver.switchTo().alert().accept();
+    }
+
+    /**
+     * This method takes a URL as a parameter, navigates to it, and then takes a screenshot of the page.
+     * The screenshot is saved to a file at the path ./screenshot.png.
+     *
+     * @param url The URL of the page to take a screenshot of
+     * @throws Exception If there is an issue taking the screenshot
+     */
+    public void takeScreenshot(String url) throws Exception{
+        try {
+        driver.get(url);
+        String fileWithPath = "./screenshot.png";
+
+        TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+
+        File file = takesScreenshot.getScreenshotAs(OutputType.FILE);
+        File distinationFile = new File(fileWithPath);
+
+        FileUtils.copyFile(file, distinationFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

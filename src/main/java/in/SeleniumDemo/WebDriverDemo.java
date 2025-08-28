@@ -28,7 +28,13 @@ public class WebDriverDemo {
 //        essentials.implicitWait();
 //        essentials.explicitWait();
 //          essentials.fluentWait(Essentials.loginUrlAccountLogin, essentials.fluentWaitElementEmailAddress);
-        essentials.actionsTest();
+//        essentials.actionsTest();
+//        essentials.alertsTest();
+        try {
+            essentials.takeScreenshot(Essentials.loginUrlAccountLogin);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 //          driver.quit();
 
 //      TODO: Learn how to implement the selenium Grid
