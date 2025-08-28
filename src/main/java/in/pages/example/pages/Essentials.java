@@ -1,14 +1,14 @@
 package in.pages.example.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.FluentWait;
 
 import java.time.Duration;
 import java.util.Iterator;
@@ -23,6 +23,7 @@ public class Essentials extends BasePage {
     private static final String url_store2 = "https://demo.evershop.io/men?od=asc";
     private static final String iframeUrl = "https://selectorshub.com/iframe-scenario/";
     private static final String showdownUrl = "http://127.0.0.1:5501/ShadomDOMExample.html";
+    public static final String loginUrlAccountLogin = "https://demo.evershop.io/account/login";
 
     // Locators
     @FindBy(className = "button-1") private WebElement buttonSubmit;
@@ -31,6 +32,7 @@ public class Essentials extends BasePage {
     @FindBy(linkText = "Strutter shoes") private WebElement linkText;
     @FindBy(className = "product-single-name") private WebElement productSingleName;
     @FindBy(id = "inp_val") private WebElement iframeInput;
+    @FindBy(css = "input[name='email") public WebElement fluentWaitElementEmailAddress;
 
     public Essentials(WebDriver driver) {
         super(driver);
@@ -138,19 +140,18 @@ public class Essentials extends BasePage {
         driver.get(iframeUrl);
 
        // Switch to iframe by indexing
-//       WebElement iframeInput = driver.switchTo().frame(0).findElement(By.id("inp_val"));
-//       iframeInput.clear();
-//       iframeInput.sendKeys("Hello");
+       iframeInput = driver.switchTo().frame(0).findElement(By.id("inp_val"));
+       iframeInput.sendKeys("Hello from Iframe");
 
        // Switch to iframe by WebElement
        WebElement iframe = driver.findElement(By.cssSelector("#pact1"));
        driver.switchTo().frame(iframe);
-       WebElement usernameField = driver.findElement(By.cssSelector("#inp_val"));
-        usernameField.sendKeys("Hello");
+       iframeInput.sendKeys("Hello");
     }
 
     //TODO: find  a webpage that has a shadow DOM and test it
-    public void showdowDOMTest(){
+    //TODO: Move these functions to Wait class
+    public void shawdowDOMTest(){
         driver.get(showdownUrl);
     }
 
@@ -174,13 +175,41 @@ public class Essentials extends BasePage {
      *
      * @see <a href="https://www.selenium.dev/documentation/en/webdriver/page_loading_strategies/">Page Loading Strategies</a>
      */
-    public void explicitWait() {
-        driver.get("https://demo.evershop.io/account/login");
+    public void explicitWait(String url) {
+        driver.get(url);
 
         // Create a WebDriverWait object with a timeout of 30 seconds
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email")));
         element.sendKeys("test@example.com");
+    }
+
+    /**
+     * This method demonstrates how to use a FluentWait to wait for an element to become visible.
+     * It first navigates to a webpage that contains a login form, waits for the email field to become visible,
+     * and then enters a test email address into the field.
+     *
+     * @param url the URL of the webpage containing the login form
+     * @param emailField the WebElement representing the email field to enter the test email address into
+     * @see <a href="https://www.selenium.dev/documentation/en/support_packages/wait_conditions/">Wait Conditions</a>
+     */
+    public void fluentWait(String url, WebElement emailField) {
+        driver.get(url);
+
+        FluentWait wait = new FluentWait(driver);
+                     wait.withTimeout(Duration.ofSeconds(30))
+                     .pollingEvery(Duration.ofSeconds(5))
+                     .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[name='email']")));//TODO: It must be a better way to implement the selector above
+
+        emailField.sendKeys("test@example.com");
+
+    }
+
+    public void actionsTest(){
+        driver.get(url_store2);
+        Actions actions = new Actions(driver);
+
+
     }
 }
