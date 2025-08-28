@@ -27,7 +27,8 @@ public class WebDriverDemo {
 //        essentials.showdowDOMTest();
 //        essentials.implicitWait();
 //        essentials.explicitWait();
-          essentials.fluentWait(Essentials.loginUrlAccountLogin, essentials.fluentWaitElementEmailAddress);
+//          essentials.fluentWait(Essentials.loginUrlAccountLogin, essentials.fluentWaitElementEmailAddress);
+        essentials.actionsTest();
 //          driver.quit();
 
 //      TODO: Learn how to implement the selenium Grid

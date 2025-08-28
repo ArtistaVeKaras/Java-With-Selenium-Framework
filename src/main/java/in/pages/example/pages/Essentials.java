@@ -206,10 +206,21 @@ public class Essentials extends BasePage {
 
     }
 
+    /**
+     * This method demonstrates how to use Actions to perform a series of keyboard and mouse actions.
+     * It first navigates to a webpage that contains a login form, waits for the email field to become visible,
+     * and then performs a series of actions to click on the email field, hold down the SHIFT key, type "Hello", and then release the SHIFT key.
+     *
+     * @see <a href="https://www.selenium.dev/documentation/en/webdriver/actions_api/">Actions API</a>
+     */
     public void actionsTest(){
-        driver.get(url_store2);
+        driver.get(loginUrlAccountLogin);
         Actions actions = new Actions(driver);
 
+        actions.moveToElement(fluentWaitElementEmailAddress).click().keyDown(Keys.SHIFT).sendKeys("Hello").keyUp(Keys.SHIFT).perform();
+    }
 
+    public void alertsTest(){
+        driver.get(loginUrlAccountLogin);
     }
 }
