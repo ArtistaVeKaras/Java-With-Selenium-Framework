@@ -251,7 +251,7 @@ public class Essentials extends BasePage {
     public void takeScreenshot(String url) throws Exception{
         try {
         driver.get(url);
-        String fileWithPath = "./screenshot.png";
+        String fileWithPath = "./Media/screenshot.png";
 
         TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
 
