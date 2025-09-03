@@ -52,19 +52,19 @@ public class TestNGAnnotationTest {
         driver.findElement(password).sendKeys("");
         driver.findElement(login).click();
     }
-    @Test(groups = {"smoke, login"})
+    @Test(groups = "smoke, login", priority = 1)
     public void testValidLogin() {
         System.out.println("Login Test 1");
         // Test valid login
     }
 
-    @Test(groups = {"regression, login"})
+    @Test(groups = "regression, login", priority = 2)
     public void testLoginWithInvalidCredentials() {
         System.out.println("Login Test 2");
         // Test invalid login
     }
 
-    @Test(groups = {"smoke, registration"})
+    @Test(groups = "smoke, registration", priority = 3)
     public void testUserRegistration() {
         System.out.println("Login Test 3");
         // Test user registration
