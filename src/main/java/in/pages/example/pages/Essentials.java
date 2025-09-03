@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.FluentWait;
+//import org.testng.annotations.Test;
 
 import java.io.File;
 import java.time.Duration;
@@ -50,6 +51,12 @@ public class Essentials extends BasePage {
     // Page actions
     public void gotoURL(String url) {
         driver.get(url);
+        System.out.println("Title: " + driver.getTitle());
+    }
+
+//    @Test(testName = "TestNG Annotations Test", description = "Annotations test", groups = "Regression", priority = 1)
+    public void testNGAnnotationsTest (){
+        driver.get(url_store1);
         System.out.println("Title: " + driver.getTitle());
     }
 

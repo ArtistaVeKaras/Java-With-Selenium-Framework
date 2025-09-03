@@ -7,7 +7,6 @@ import java.time.Duration;
 
     /**
      * Initializes the BasePage object with the given WebDriver instance.
-     *
      * @param driver The WebDriver instance to be used for navigation and finding elements.
      */
 public class BasePage {
