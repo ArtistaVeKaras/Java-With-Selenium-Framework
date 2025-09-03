@@ -30,7 +30,10 @@ jobs:
           ${{ runner.os }}-maven-
 
     - name: Run Maven tests
-      run: mvn clean test -DsuiteXmlFile=testng.xml
+      run: mvn clean test
+
+    - name: Run Maven tests with testng.xml
+      run: mvn test -s testng.xml
 
 
     - name: Upload test results
