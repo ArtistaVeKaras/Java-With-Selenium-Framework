@@ -131,6 +131,7 @@ Ensure your `pom.xml` includes the TestNG dependency:
 </suite>
 ```
 
+
 ### 3. GitHub Actions Example
 
 Create `.github/workflows/maven.yml`:
