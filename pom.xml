@@ -65,7 +65,14 @@
           </suiteXmlFiles>
           <argLine>
             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+            -Dallure.results.directory=target/allure-results
           </argLine>
+          <properties>
+            <property>
+              <name>listener</name>
+              <value>io.qameta.allure.testng.AllureTestNg</value>
+            </property>
+          </properties>
         </configuration>
         <dependencies>
           <dependency>

@@ -46,6 +46,7 @@ jobs:
         name: test-results-java${{ matrix.java-version }}
         path: |
           target/surefire-reports/
+          target/allure-results/
           target/site/allure-maven-plugin/
         retention-days: 5
 
@@ -53,7 +54,7 @@ jobs:
       if: always()
       uses: simple-elf/allure-report-action@v1.9
       with:
-        allure_results: build/allure-results
+        allure_results: target/allure-results
         gh_pages: gh-pages
         allure_history: allure-history
         enable_charts: true
