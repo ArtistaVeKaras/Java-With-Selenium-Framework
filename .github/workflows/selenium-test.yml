@@ -51,7 +51,7 @@ jobs:
 
     - name: Generate Allure Report
       if: always()
-      uses: simple-elf/allure-report-action@v3
+      uses: simple-elf/allure-report-action@v1.3.0
       with:
         allure_results: target/allure-results
         enable_charts: true
