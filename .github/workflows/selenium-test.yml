@@ -51,10 +51,11 @@ jobs:
 
     - name: Generate Allure Report
       if: always()
-      uses: simple-elf/allure-report-action@<commit-sha>
-
+      uses: simple-elf/allure-report-action@v1.9
       with:
-        allure_results: target/allure-results
+        allure_results: build/allure-results
+        gh_pages: gh-pages
+        allure_history: allure-history
         enable_charts: true
 
     - name: Upload Allure Report
